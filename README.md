@@ -17,3 +17,4 @@ Use the following commands:
 ## Credits
 This overlay is made by Sylvia Crowe (oneirocosm).
 The CSS Reset made by Andy Bell. You can find it [here](https://piccalil.li/blog/a-more-modern-css-reset/)
+The Audiowide font was created by Brian J. Bonislawsky DBA Astigmatic (AOETI) (astigma@astigmatic.com), with the Reserved Font Name "Audiowide"

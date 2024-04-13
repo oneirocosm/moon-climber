@@ -24,10 +24,10 @@
     "compatibleRange": "^2.0.0",
     "dashboardPanels": [
       {
-        "name": "panel",
-        "title": "Panel",
+        "name": "controls",
+        "title": "Controls",
         "width": 2,
-        "file": "panel.html",
+        "file": "controls.html",
         "headerColor": "#040227"
       }
     ],
@@ -62,24 +62,25 @@
     "generate-schema-types": "trash src/types/schemas && nodecg schema-types"
   },
   "dependencies": {
-    "ts-node": "*",
+    "@types/react": "*",
+    "@types/react-dom": "*",
     "react": "*",
     "react-dom": "*",
-    "@types/react": "*",
-    "@types/react-dom": "*"
+    "styled-components": "^6.1.8",
+    "ts-node": "*"
   },
   "devDependencies": {
-    "typescript": "^5.1.3",
-    "@types/node": "^18",
     "@nodecg/types": "^2.0.0",
-    "@parcel/core": "*",
     "@parcel/config-default": "*",
+    "@parcel/core": "*",
     "@parcel/reporter-cli": "*",
     "@parcel/validator-typescript": "*",
+    "@types/node": "^18",
+    "concurrently": "*",
     "glob": "^10.2.7",
-    "trash-cli": "*",
     "nodemon": "*",
-    "concurrently": "*"
+    "trash-cli": "*",
+    "typescript": "^5.1.3"
   },
   "repository": "https://github.com/nodecg/nodecg.git",
   "license": "MIT"

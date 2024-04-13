@@ -14,4 +14,6 @@ Use the following commands:
 -   `npm run dev`: Build the project, automatically rebuild on changes, launch the NodeCG server, and automatically restart the NodeCG server on changes.
     -   Only restarts the NodeCG server when server-side (i.e. extension) code changes. Changes to client-side code (i.e. dashboard panels and graphics) will not cause the server to restart, nor will they cause browser tabs to automatically refresh.
 
-
+## Credits
+This overlay is made by Sylvia Crowe (oneirocosm).
+The CSS Reset made by Andy Bell. You can find it [here](https://piccalil.li/blog/a-more-modern-css-reset/)

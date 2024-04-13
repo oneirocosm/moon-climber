@@ -1,29 +1,16 @@
 import React from 'react';
+import OverlayGrid from './components/OverlayGrid';
+import OverlayTitle from './components/OverlayTitle';
+import PlayerBlock from './components/PlayerBlock';
 
 export function Index() {
 	return (
-		<>
-			<p>
-				Hello, I'm one of the graphics in your bundle! I'm where you put the graphics you want to run in your
-				broadcast software!
-			</p>
-
-			<p>
-				To edit me, open "<span className="monospace">src/graphics/Index.tsx</span>" in your favorite text
-				editor or IDE.
-			</p>
-
-			<p>You can use any libraries, frameworks, and tools you want. There are no limits.</p>
-
-			<p>
-				Visit{' '}
-				<a href="https://nodecg.dev" target="_blank" rel="noopener">
-					https://nodecg.dev
-				</a>{' '}
-				for full documentation.
-			</p>
-
-			<p>Have fun!</p>
-		</>
+		<OverlayGrid>
+			<OverlayTitle />
+			<PlayerBlock id="player1" />
+			<PlayerBlock id="player2" />
+			<PlayerBlock id="player3" />
+			<PlayerBlock id="player4" />
+		</OverlayGrid>
 	);
 }

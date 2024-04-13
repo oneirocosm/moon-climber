@@ -7,6 +7,7 @@ const OverlayGridInner = styled.div`
     width: 1920px;
     height: 1080px;
     box-sizing: border-box;
+    background-image: url(${""});
 `;
 
 export default function OverlayGrid(props: PropsWithChildren) {

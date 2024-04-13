@@ -1,5 +1,5 @@
 import type NodeCG from '@nodecg/types';
-import type { ExampleReplicant } from '../types/schemas';
+import type { ExampleReplicant } from '../types/schemas/exampleReplicant';
 
 module.exports = function (nodecg: NodeCG.ServerAPI) {
 	nodecg.log.info("Hello, from your bundle's extension!");

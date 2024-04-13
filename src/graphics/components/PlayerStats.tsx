@@ -36,10 +36,12 @@ export default function PlayerStats(props: PlayerStatsProps) {
             display: "flex",
             justifyContent: "space-between",
             flexDirection: topRow(props.id) ? "column" : "column-reverse",
+            width: "15%",
         }}
         >
             <PlayerSummary style={{
-                marginTop: topRow(props.id) ? "auto" : "0",
+                marginTop: topRow(props.id) ? "0" : "auto",
+                marginBottom: topRow(props.id) ? "auto" : "0",
             }}>
                 <h3>Chapter</h3>
                 <p>####</p>
@@ -48,7 +50,6 @@ export default function PlayerStats(props: PlayerStatsProps) {
             </PlayerSummary>
             <PlayerCamera />
             <PlayerSummary style={{
-                marginBottom: topRow(props.id) ? "0" : "auto",
             }}>
                 <h3>Name</h3>
                 <p>pronouns</p>

@@ -29,6 +29,6 @@ export default function PlayerBlock(props: PlayerBlockProps) {
         >
             <PlayerScreen>screen here</PlayerScreen>
             <PlayerStats id={props.id} />
-        </div>
+        </div >
     )
 }

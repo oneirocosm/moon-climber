@@ -23,14 +23,15 @@ const Title = styled.h1`
     font-family: Audiowide;
     font-size: 5rem;
     color: ${COLORS.MOONSHOT_CORE_YELLOW};
-    margin-right: 4rem;
+    margin-right: 2rem;
+    transform: skew(-10deg, 0deg);
 `;
 
 export default function OverlayTitle() {
     return (
         <OverlayTitleInner>
             <img src={moonshotLogo} />
-            <Title>Celeste Race</Title>
+            <Title>CELESTE RACE</Title>
         </OverlayTitleInner>
     )
 

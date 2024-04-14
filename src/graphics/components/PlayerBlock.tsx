@@ -7,7 +7,7 @@ type PlayerBlockProps = {
 }
 
 const PlayerScreen = styled.div`
-    background-color: purple;
+    background-color: #222222;
     border-radius: 20px;
     height: 100%;
     aspect-ratio: 16 / 9;

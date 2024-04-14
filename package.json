@@ -62,10 +62,13 @@
     "generate-schema-types": "trash src/types/schemas && nodecg schema-types"
   },
   "dependencies": {
+    "@pixi/react": "^7.1.0",
     "@types/react": "*",
     "@types/react-dom": "*",
-    "react": "*",
-    "react-dom": "*",
+    "pixi.js": "^7.2.4",
+    "punycode": "^1.4.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "styled-components": "^6.1.8",
     "ts-node": "*"
   },

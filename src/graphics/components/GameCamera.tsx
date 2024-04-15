@@ -23,11 +23,18 @@ type GameCameraProps = {
 
 export default function GameCamera(props: GameCameraProps) {
     const [player] = useReplicant<PlayerData>(props.id);
+    const [selectedAudio] = useReplicant<string>("selectedAudio")
+    const setMute = React.useCallback(() => {
+        if (selectedAudio === props.id) {
+            return ""
+        }
+        return "&mutespeaker=1"
+    }, [selectedAudio]);
     return (
         <ScreenContainer>
             <ScreenIframe
                 allow="autoplay;camera"
-                src={`${player?.gameSource}&cleanoutput=1&fullscreen=1`}
+                src={`${player?.gameSource}${setMute()}&cleanoutput=1&fullscreen=1`}
                 style={{
                     transformOrigin: "50% 91%",
                     transform: `scale(${player?.gameScale ?? 1.0})`,

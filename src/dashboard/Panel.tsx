@@ -1,9 +1,11 @@
 import React from 'react';
 import PlayerConfig from './components/PlayerConfig';
+import AudioSelection from './components/AudioSelection';
 
 export function Panel() {
 	return (
 		<>
+			<AudioSelection />
 			<PlayerConfig id="player1" />
 			<PlayerConfig id="player2" />
 			<PlayerConfig id="player3" />

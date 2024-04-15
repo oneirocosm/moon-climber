@@ -18,5 +18,6 @@ module.exports = function (nodecg: NodeCG.ServerAPI) {
 	const player2 = nodecg.Replicant('player2') as unknown as NodeCG.ServerReplicantWithSchemaDefault<PlayerData>;
 	const player3 = nodecg.Replicant('player3') as unknown as NodeCG.ServerReplicantWithSchemaDefault<PlayerData>;
 	const player4 = nodecg.Replicant('player4') as unknown as NodeCG.ServerReplicantWithSchemaDefault<PlayerData>;
+	const selectedAudio = nodecg.Replicant('selectedAudio', { defaultValue: "none" });
 
 };

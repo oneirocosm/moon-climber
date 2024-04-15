@@ -1,5 +1,5 @@
 import React from 'react';
-import { useReplicant } from '@nodecg/react-hooks'
+import { useReplicant } from '@nodecg/react-hooks';
 import ControlForm from './ControlForm';
 import { PlayerData } from '../../types/playerdata';
 
@@ -19,7 +19,7 @@ export default function PlayerConfig(props: PlayerConfigProps) {
     }
     return (
         <>
-            <h2>{props.id}</h2>
+            <h3>{props.id}</h3>
             <ControlForm label="Name">
                 <input type="text" onChange={(e) => setPlayer({ ...player, name: e.target.value } as PlayerData)} />
             </ControlForm>

@@ -1,5 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import styled from 'styled-components';
+import { useReplicant } from '@nodecg/react-hooks';
+import { PlayerData } from '../../types/playerdata';
 
 type PlayerBlockProps = {
     top: boolean;
@@ -31,6 +33,7 @@ function topRow(id: string) {
 
 
 export default function PlayerStats(props: PlayerStatsProps) {
+    const [player] = useReplicant<PlayerData>(props.id);
     return (
         <div style={{
             display: "flex",
@@ -51,8 +54,8 @@ export default function PlayerStats(props: PlayerStatsProps) {
             <PlayerCamera />
             <PlayerSummary style={{
             }}>
-                <h3>Name</h3>
-                <p>pronouns</p>
+                <h3>{player?.name}</h3>
+                <p>{player?.pronouns}</p>
             </PlayerSummary>
         </div>
     )

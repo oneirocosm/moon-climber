@@ -1,0 +1,32 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "properties": {
+        "name": {
+            "description": "The name of the player",
+            "type": "string",
+            "default": "player1"
+        },
+        "pronouns": {
+            "description": "The pronouns of the player",
+            "type": "string",
+            "default": "any/all"
+        },
+        "gameSource": {
+            "description": "The url to the game's vdo-ninja source",
+            "type": "string",
+            "default": ""
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "name",
+        "pronouns",
+        "gameSource"
+    ],
+    "default": {
+        "firstName": "player1",
+        "pronouns": "any/all",
+        "gameSource": ""
+    }
+}

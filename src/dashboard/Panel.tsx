@@ -1,8 +1,13 @@
 import React from 'react';
+import PlayerConfig from './components/PlayerConfig';
 
 export function Panel() {
 	return (
 		<>
+			<PlayerConfig id="player1" />
+			<PlayerConfig id="player2" />
+			<PlayerConfig id="player3" />
+			<PlayerConfig id="player4" />
 			<p>Hello, I'm one of the panels in your bundle! I'm where you put your controls.</p>
 
 			<p>

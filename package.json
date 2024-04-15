@@ -26,8 +26,8 @@
       {
         "name": "controls",
         "title": "Controls",
-        "width": 2,
-        "file": "controls.html",
+        "width": 3,
+        "file": "panel.html",
         "headerColor": "#040227"
       }
     ],
@@ -62,6 +62,7 @@
     "generate-schema-types": "trash src/types/schemas && nodecg schema-types"
   },
   "dependencies": {
+    "@nodecg/react-hooks": "^1.0.3",
     "@pixi/react": "^7.1.0",
     "@types/react": "*",
     "@types/react-dom": "*",

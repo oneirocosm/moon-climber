@@ -2,6 +2,8 @@ import React from 'react';
 import PlayerStats from './PlayerStats';
 import styled from 'styled-components';
 
+import GameCamera from './GameCamera';
+
 type PlayerBlockProps = {
     id: string;
 }
@@ -27,7 +29,7 @@ export default function PlayerBlock(props: PlayerBlockProps) {
             flexDirection: leftRow(props.id) ? "row" : "row-reverse",
         }}
         >
-            <PlayerScreen>screen here</PlayerScreen>
+            <GameCamera id={props.id} />
             <PlayerStats id={props.id} />
         </div >
     )

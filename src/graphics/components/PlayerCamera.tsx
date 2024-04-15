@@ -27,7 +27,14 @@ export default function PlayerCamera(props: PlayerCameraProps) {
     const [player] = useReplicant<PlayerData>(props.id);
     return (
         <CameraContainer>
-            <PlayerCameraInner id={`pcam-${props.id}`} allow="autoplay;camera" src={`${player?.camSource}&mutespeaker=1&hideheader=1&cleanoutput=1&fullscreen=1`} />
+            <PlayerCameraInner
+                id={`pcam-${props.id}`}
+                allow="autoplay;camera"
+                src={`${player?.camSource}&mutespeaker=1&hideheader=1&cleanoutput=1&fullscreen=1`}
+                style={{
+                    transform: `translate(-50%, -50%) scale(${player?.camScale ?? 1.0})`,
+                }}
+            />
         </CameraContainer>
     )
 }

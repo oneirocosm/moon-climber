@@ -1,5 +1,5 @@
 import React from 'react';
-import { useReplicant, UseReplicantOptions } from '@nodecg/react-hooks'
+import { useReplicant } from '@nodecg/react-hooks'
 import ControlForm from './ControlForm';
 import { PlayerData } from '../../types/playerdata';
 
@@ -31,6 +31,20 @@ export default function PlayerConfig(props: PlayerConfigProps) {
             </ControlForm>
             <ControlForm label="Camera url">
                 <input type="text" onChange={(e) => setPlayer({ ...player, camSource: e.target.value } as PlayerData)} />
+            </ControlForm>
+            <ControlForm label="Game scale">
+                <input type="number"
+                    value={player?.gameScale ?? 1.0}
+                    min={0.1} max={100} step={0.01}
+                    onChange={(e) => setPlayer({ ...player, gameScale: Number(e.target.value) } as PlayerData)}
+                />
+            </ControlForm>
+            <ControlForm label="Camera scale">
+                <input type="number"
+                    value={player?.camScale ?? 1.0}
+                    min={0.1} max={100} step={0.01}
+                    onChange={(e) => setPlayer({ ...player, camScale: Number(e.target.value) } as PlayerData)}
+                />
             </ControlForm>
         </>
     );

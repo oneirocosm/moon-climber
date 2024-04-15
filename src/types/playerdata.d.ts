@@ -15,4 +15,12 @@ export interface PlayerData {
      * The url to the camera's vdo-ninja source
      */
     camSource: string;
+    /**
+     * A scale factor for the game camera
+     */
+    gameScale: number;
+    /**
+     * A scale factor for the game camera
+     */
+    camScale: number;
 }

@@ -10,6 +10,13 @@ const ScreenIframe = styled.iframe`
     aspect-ratio: 16 / 9;
 `;
 
+const ScreenContainer = styled.div`
+    border-radius: 20px;
+    align-self: stretch;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+`;
+
 type GameCameraProps = {
     id: string,
 }
@@ -17,6 +24,15 @@ type GameCameraProps = {
 export default function GameCamera(props: GameCameraProps) {
     const [player] = useReplicant<PlayerData>(props.id);
     return (
-        <ScreenIframe allow="autoplay;camera" src={player?.gameSource}></ScreenIframe>
+        <ScreenContainer>
+            <ScreenIframe
+                allow="autoplay;camera"
+                src={`${player?.gameSource}&cleanoutput=1&fullscreen=1`}
+                style={{
+                    transformOrigin: "50% 91%",
+                    transform: `scale(${player?.gameScale ?? 1.0})`,
+                }}
+            />
+        </ScreenContainer>
     );
 }

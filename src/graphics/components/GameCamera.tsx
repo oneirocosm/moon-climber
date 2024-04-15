@@ -14,8 +14,6 @@ type GameCameraProps = {
     id: string,
 }
 
-
-
 export default function GameCamera(props: GameCameraProps) {
     const [player] = useReplicant<PlayerData>(props.id);
     return (

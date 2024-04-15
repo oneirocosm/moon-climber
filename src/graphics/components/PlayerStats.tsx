@@ -2,6 +2,7 @@ import React, { PropsWithChildren } from 'react';
 import styled from 'styled-components';
 import { useReplicant } from '@nodecg/react-hooks';
 import { PlayerData } from '../../types/playerdata';
+import PlayerCamera from './PlayerCamera';
 
 type PlayerBlockProps = {
     top: boolean;
@@ -15,7 +16,7 @@ const PlayerSummary = styled.div`
     justify-content: start;
 `;
 
-const PlayerCamera = styled.div`
+const aPlayerCamera = styled.div`
     border-radius: 100%;
     background-color: black;
     width: 100%;
@@ -51,7 +52,7 @@ export default function PlayerStats(props: PlayerStatsProps) {
                 <h3>Screen</h3>
                 <p>####</p>
             </PlayerSummary>
-            <PlayerCamera />
+            <PlayerCamera id={props.id} />
             <PlayerSummary style={{
             }}>
                 <h3>{player?.name}</h3>

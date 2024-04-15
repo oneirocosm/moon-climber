@@ -29,6 +29,9 @@ export default function PlayerConfig(props: PlayerConfigProps) {
             <ControlForm label="Game vid url">
                 <input type="text" onChange={(e) => setPlayer({ ...player, gameSource: e.target.value } as PlayerData)} />
             </ControlForm>
+            <ControlForm label="Camera url">
+                <input type="text" onChange={(e) => setPlayer({ ...player, camSource: e.target.value } as PlayerData)} />
+            </ControlForm>
         </>
     );
 }

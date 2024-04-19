@@ -66,12 +66,15 @@
     "@pixi/react": "^7.1.0",
     "@types/react": "*",
     "@types/react-dom": "*",
+    "@types/url-parse": "^1.4.11",
     "pixi.js": "^7.2.4",
     "punycode": "^1.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "styled-components": "^6.1.8",
-    "ts-node": "*"
+    "ts-node": "*",
+    "url-parse": "^1.5.10",
+    "ws": "^8.16.0"
   },
   "devDependencies": {
     "@nodecg/types": "^2.0.0",
@@ -80,6 +83,7 @@
     "@parcel/reporter-cli": "*",
     "@parcel/validator-typescript": "*",
     "@types/node": "^18",
+    "@types/ws": "^8.5.10",
     "concurrently": "*",
     "glob": "^10.2.7",
     "nodemon": "*",

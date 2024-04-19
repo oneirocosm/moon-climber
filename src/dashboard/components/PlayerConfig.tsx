@@ -21,16 +21,28 @@ export default function PlayerConfig(props: PlayerConfigProps) {
         <>
             <h3>{props.id}</h3>
             <ControlForm label="Name">
-                <input type="text" onChange={(e) => setPlayer({ ...player, name: e.target.value } as PlayerData)} />
+                <input type="text"
+                    value={player?.name ?? ""}
+                    onChange={(e) => setPlayer({ ...player, name: e.target.value } as PlayerData)}
+                />
             </ControlForm>
             <ControlForm label="Pronouns">
-                <input type="text" onChange={(e) => setPlayer({ ...player, pronouns: e.target.value } as PlayerData)} />
+                <input type="text"
+                    value={player?.pronouns ?? ""}
+                    onChange={(e) => setPlayer({ ...player, pronouns: e.target.value } as PlayerData)}
+                />
             </ControlForm>
             <ControlForm label="Game vid url">
-                <input type="text" onChange={(e) => setPlayer({ ...player, gameSource: e.target.value } as PlayerData)} />
+                <input type="text"
+                    value={player?.gameSource ?? ""}
+                    onChange={(e) => setPlayer({ ...player, gameSource: e.target.value } as PlayerData)}
+                />
             </ControlForm>
             <ControlForm label="Camera url">
-                <input type="text" onChange={(e) => setPlayer({ ...player, camSource: e.target.value } as PlayerData)} />
+                <input type="text"
+                    value={player?.camSource ?? ""}
+                    onChange={(e) => setPlayer({ ...player, camSource: e.target.value } as PlayerData)}
+                />
             </ControlForm>
             <ControlForm label="Game scale">
                 <input type="number"

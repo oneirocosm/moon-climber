@@ -67,6 +67,7 @@
     "@types/react": "*",
     "@types/react-dom": "*",
     "@types/url-parse": "^1.4.11",
+    "focus-trap-react": "^10.2.3",
     "pixi.js": "^7.2.4",
     "punycode": "^1.4.1",
     "react": "^18.2.0",

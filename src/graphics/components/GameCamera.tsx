@@ -63,7 +63,7 @@ export default function GameCamera(props: GameCameraProps) {
             clearTimeout(timeout)
             timeout = setTimeout(() => {
                 requestLoudness()
-            }, 10)
+            }, 50)
         }
 
         console.log("foo")

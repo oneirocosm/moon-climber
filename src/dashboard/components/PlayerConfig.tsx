@@ -2,13 +2,22 @@ import React from 'react';
 import { useReplicant } from '@nodecg/react-hooks';
 import ControlForm from './ControlForm';
 import { PlayerData } from '../../types/playerdata';
+import parse from 'url-parse';
 
 type PlayerConfigProps = {
     id: string;
 }
 
 export default function PlayerConfig(props: PlayerConfigProps) {
+    const [hostUrl] = useReplicant<string>("hostUrl");
     const [player, setPlayer] = useReplicant<PlayerData>(props.id);
+
+    /*
+    const getApiKey = React.useCallback((): string => {
+        let url = parse(hostUrl ?? "", true);
+        return url.query.api as string
+    }, [hostUrl]);
+    */
 
     function setName(newName: string) {
         const updatedPlayer = {
@@ -36,6 +45,9 @@ export default function PlayerConfig(props: PlayerConfigProps) {
                 <input type="text"
                     value={player?.gameSource ?? ""}
                     onChange={(e) => setPlayer({ ...player, gameSource: e.target.value } as PlayerData)}
+                    style={{
+                        color: `black`,
+                    }}
                 />
             </ControlForm>
             <ControlForm label="Camera url">

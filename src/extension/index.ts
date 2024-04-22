@@ -1,14 +1,27 @@
 import type NodeCG from '@nodecg/types';
 import type { PlayerData } from '../types/playerdata';
 import WebSocket from 'ws';
+import parse from 'url-parse';
 
 let socket: WebSocket;
 let connecting: any = undefined;
 let failedCount = 0;
 let callbackID = Math.random() * 1000;
+let apiKey: string;
+
+
+function handler(event: WebSocket.MessageEvent) {
+	console.log(JSON.stringify(event.data));
+}
+
+
 function connect() {
+	if (!apiKey) {
+		return;
+	}
 	clearTimeout(connecting)
 	if (socket) {
+		//socket.removeEventListener("message", handler)
 		if (socket.readyState === socket.OPEN) { return; }
 		try {
 			socket.close();
@@ -33,7 +46,7 @@ function connect() {
 	socket.onopen = function () {
 		failedCount = 0;
 		try {
-			socket.send(JSON.stringify({ "join": "8ss5J7EyNC" }))
+			socket.send(JSON.stringify({ "join": apiKey }))
 		} catch (e) {
 			connecting = setTimeout(function () { connect(); }, 1)
 		}
@@ -41,6 +54,9 @@ function connect() {
 		//socket.send(JSON.stringify({ "join": "45igret40tj9" }))
 	}
 
+	socket.onmessage = handler
+
+	/*
 	socket.addEventListener('message', function (event) {
 		if (event.data) {
 			var data = JSON.parse(event.data as string);
@@ -54,6 +70,7 @@ function connect() {
 			}
 		}
 	});
+	*/
 }
 
 async function requestStats() {
@@ -67,6 +84,26 @@ async function requestStats() {
 	}
 }
 
+async function muteGameScreen(playerKey: string, mute: boolean) {
+	try {
+		socket.send(JSON.stringify({ "target": playerKey, "action": "mic", "value": !mute }))
+	} catch (e) {
+		connecting = setTimeout(function () { connect(); }, 1)
+	}
+
+}
+
+function getPlayerKey(player: PlayerData): string {
+	if (!player) {
+		return "";
+	}
+	const url = parse(player.gameSource, true);
+	return url.query.view as string;
+}
+function getApiKey(hostUrl: string): string {
+	let url = parse(hostUrl ?? "", true);
+	return url.query.api as string
+}
 
 module.exports = async function (nodecg: NodeCG.ServerAPI) {
 	nodecg.log.info("Hello, from your bundle's extension!");
@@ -81,16 +118,37 @@ module.exports = async function (nodecg: NodeCG.ServerAPI) {
 	nodecg.log.info('Visit https://nodecg.dev for full documentation.');
 	nodecg.log.info('Good luck!');
 
-	const player1 = nodecg.Replicant('player1') as unknown as NodeCG.ServerReplicantWithSchemaDefault<PlayerData>;
-	const player2 = nodecg.Replicant('player2') as unknown as NodeCG.ServerReplicantWithSchemaDefault<PlayerData>;
-	const player3 = nodecg.Replicant('player3') as unknown as NodeCG.ServerReplicantWithSchemaDefault<PlayerData>;
-	const player4 = nodecg.Replicant('player4') as unknown as NodeCG.ServerReplicantWithSchemaDefault<PlayerData>;
 	const selectedAudio = nodecg.Replicant('selectedAudio', { defaultValue: "none" });
+	const hostUrl = nodecg.Replicant('hostUrl', { defaultValue: "" });
 
-	//connect()
+	const playerIds = ["player1", "player2", "player3", "player4"];
+	const playerReps: Map<string, NodeCG.ServerReplicantWithSchemaDefault<PlayerData>> = new Map();
+	for (const playerId of playerIds) {
+		const player = nodecg.Replicant(playerId) as unknown as NodeCG.ServerReplicantWithSchemaDefault<PlayerData>;
+		playerReps.set(playerId, player);
+		player.on("change", (newValue, oldValue) => {
+			if (newValue.gameSource !== oldValue?.gameSource) {
+				const playerKey = getPlayerKey(newValue);
+				muteGameScreen(playerKey, selectedAudio.value !== playerId)
+			}
+		});
+	}
+
+	hostUrl.on('change', (newValue) => {
+		apiKey = getApiKey(newValue);
+		console.log(apiKey)
+		connect()
+	})
+
+	selectedAudio.on('change', (newValue, oldValue) => {
+		for (const playerId of playerIds) {
+			const playerKey = getPlayerKey(playerReps.get(playerId)?.value as PlayerData);
+			if (!playerKey) {
+				return;
+			}
+			muteGameScreen(playerKey, selectedAudio.value !== playerId)
+		}
+	})
+
 	//requestStats()
 };
-
-async function testApi() {
-
-}

@@ -29,6 +29,13 @@
         "width": 3,
         "file": "panel.html",
         "headerColor": "#040227"
+      },
+      {
+        "name": "manual-effects",
+        "title": "Manual Effects",
+        "width": 3,
+        "file": "manual-effects.html",
+        "headerColor": "#040227"
       }
     ],
     "graphics": [
@@ -64,9 +71,11 @@
   "dependencies": {
     "@nodecg/react-hooks": "^1.0.3",
     "@pixi/react": "^7.1.0",
+    "@types/color": "^3.0.6",
     "@types/react": "*",
     "@types/react-dom": "*",
     "@types/url-parse": "^1.4.11",
+    "color": "^4.2.3",
     "focus-trap-react": "^10.2.3",
     "pixi.js": "^7.2.4",
     "punycode": "^1.4.1",

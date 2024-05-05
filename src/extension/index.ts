@@ -2,6 +2,8 @@ import type NodeCG from '@nodecg/types';
 import type { PlayerData } from '../types/playerdata';
 import parse from 'url-parse';
 import { VdoNinjaAudio } from './vdo-ninja-audio';
+import { PlayerServer } from './player-server';
+import { CelesteEvent } from '../types/celesteevent';
 
 
 function getPlayerKey(player: PlayerData): string {
@@ -33,11 +35,14 @@ module.exports = async function (nodecg: NodeCG.ServerAPI) {
 	const hostUrl = nodecg.Replicant('hostUrl', { defaultValue: "" });
 
 	const playerIds = ["player1", "player2", "player3", "player4"];
-	const playerReps: Map<string, NodeCG.ServerReplicantWithSchemaDefault<PlayerData>> = new Map();
+	const playerReps: Map<string, NodeCG.ServerReplicant<PlayerData>> = new Map();
 	for (const playerId of playerIds) {
-		const player = nodecg.Replicant(playerId) as unknown as NodeCG.ServerReplicantWithSchemaDefault<PlayerData>;
+		const player = nodecg.Replicant(playerId) as unknown as NodeCG.ServerReplicant<PlayerData>;
 		playerReps.set(playerId, player);
 		player.on("change", (newValue, oldValue) => {
+			if (!newValue) {
+				return;
+			}
 			if (newValue.gameSource !== oldValue?.gameSource) {
 				const playerKey = getPlayerKey(newValue);
 				VdoNinjaAudio.muteGameScreen(playerKey, selectedAudio.value !== playerId)
@@ -58,5 +63,15 @@ module.exports = async function (nodecg: NodeCG.ServerAPI) {
 			}
 			VdoNinjaAudio.muteGameScreen(playerKey, newValue !== playerId)
 		}
-	})
+	});
+
+	const playerServer = new PlayerServer(playerReps);
+
+	nodecg.listenFor("celesteEvent", (data: CelesteEvent) => {
+		const playerConnection = playerServer.connections.get(data.playerId);
+		if (!playerConnection) {
+			return;
+		}
+		playerConnection.send(JSON.stringify(data));
+	});
 };

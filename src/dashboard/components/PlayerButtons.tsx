@@ -50,7 +50,9 @@ const effects = [
     { code: "invertdpad", name: "Invert D-Pad" },
     { code: "flipscreen", name: "Flip Screen" },
     { code: "mirrorworld", name: "Mirror World" },
-]
+];
+function test() {
+}
 
 export default function PlayerButtons(props: PlayerButtonsProps) {
     return (
@@ -61,16 +63,22 @@ export default function PlayerButtons(props: PlayerButtonsProps) {
                     effects.map((effect, i) => <>
                         <StyledButton
                             regColor={colors[i % colors.length]}
-                            onClick={() => { }}
+                            onClick={() => {
+                                nodecg.sendMessage(
+                                    "celesteEvent",
+                                    { playerId: props.id, code: effect.code }
+                                );
+                            }}
+
                             style={{ width: "40%" }}
                             key={`effectbutton-${props.id}-${effect.code}`}
                         >
                             {effect.name}
-                        </StyledButton>
+                        </StyledButton >
                     </>
                     )
                 }
             </ButtonsBox>
-        </div>
+        </div >
     );
 }

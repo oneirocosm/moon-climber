@@ -23,4 +23,8 @@ export interface PlayerData {
      * A scale factor for the game camera
      */
     camScale: number;
+    /**
+     * A boolean indicating if the game bridge is connected
+     */
+    bridgeConnected: boolean;
 }

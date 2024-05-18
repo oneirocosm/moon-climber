@@ -9,7 +9,7 @@ export class PlayerServer {
     server: WebSocket.Server;
     private mutex: Mutex;
 
-    constructor(playerReps: Map<string, NodeCG.ServerReplicant<PlayerData>>) {
+    constructor(playerReps: Map<string, NodeCG.ServerReplicant<PlayerData>>, nodecg: NodeCG.ServerAPI) {
         this.connections = new Map();
         this.mutex = new Mutex();
 
@@ -47,7 +47,12 @@ export class PlayerServer {
                 return
             }
 
-            connection.on("message", () => {/*todo*/ });
+            connection.on("message", (json: string) => {
+                let success = JSON.parse(json);
+                let msgName = `effectresp-${success.playerId}`;
+                nodecg.sendMessage(msgName, success);
+                console.log(success);
+            });
 
             connection.on("close", async () => {
                 let unlock = await this.mutex.acquire();

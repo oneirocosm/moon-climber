@@ -76,19 +76,21 @@ export default function GameCamera(props: GameCameraProps) {
     }, [getGuestId]);
 
     return (
-        <ScreenContainer style={{
-            boxSizing: "border-box",
-            boxShadow: `${selectedAudio === props.id ? `0 0 0 ${loudness}px ${COLORS.MOONSHOT_CORE_PINK}` : ""}`,
-        }}>
-            <ScreenIframe
-                allow="autoplay;camera"
-                id={`${props.id}-gamecamera`}
-                src={`${player?.gameSource}&cleanoutput=1&fullscreen=1&style=3&meterstyle=4`}
-                style={{
-                    transformOrigin: "50% 91%",
-                    transform: `scale(${player?.gameScale ?? 1.0})`,
-                }}
-            />
-        </ScreenContainer>
+        <>
+            <ScreenContainer style={{
+                boxSizing: "border-box",
+                boxShadow: `${selectedAudio === props.id ? `0 0 0 ${loudness}px ${COLORS.MOONSHOT_CORE_PINK}` : ""}`,
+            }}>
+                <ScreenIframe
+                    allow="autoplay;camera"
+                    id={`${props.id}-gamecamera`}
+                    src={`${player?.gameSource}&cleanoutput=1&fullscreen=1&style=3&meterstyle=4`}
+                    style={{
+                        transformOrigin: "50% 91%",
+                        transform: `scale(${player?.gameScale ?? 1.0})`,
+                    }}
+                />
+            </ScreenContainer>
+        </>
     );
 }

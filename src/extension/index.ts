@@ -65,7 +65,7 @@ module.exports = async function (nodecg: NodeCG.ServerAPI) {
 		}
 	});
 
-	const playerServer = new PlayerServer(playerReps);
+	const playerServer = new PlayerServer(playerReps, nodecg);
 
 	nodecg.listenFor("celesteEvent", (data: CelesteEvent) => {
 		const playerConnection = playerServer.connections.get(data.playerId);

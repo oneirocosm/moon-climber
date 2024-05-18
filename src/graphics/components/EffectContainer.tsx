@@ -1,7 +1,7 @@
 import React from 'react';
 import { useListenFor } from '@nodecg/react-hooks'
 import { v4 as uuidv4 } from 'uuid';
-import IconBox from './IconBox';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import oshiro from '../assets/icons/oshiro.png';
 import seeker from '../assets/icons/seeker.png';
@@ -203,13 +203,43 @@ export default function EffectContainer(props: EffectContainerProps) {
             alignItems: "end",
             gap: "0.1rem",
             overflow: "visible",
-            backgroundColor: "limegreen",
         }}>
-            {...icons.map((data: IconState) => {
-                return (
-                    <IconBox key={uuidv4()} src={effects[data.code].img} height="1.5rem" />
-                )
-            })}
+            <AnimatePresence mode="popLayout">
+                {...icons.map((data: IconState) => {
+                    return (
+                        <motion.div style={{
+                            height: "1.5rem",
+                            overflow: "visible",
+                        }}
+                            key={data.id}
+                            layout
+                            initial={{
+                                opacity: 0,
+                                transform: "translateX(-1.5rem)",
+                            }}
+                            animate={{
+                                opacity: 1,
+                                transform: "translateX(0)",
+                            }}
+                            exit={{
+                                opacity: 0,
+                                transform: "translateX(-1.5rem)",
+                            }}
+                        >
+                            <img src={effects[data.code].img} style={{
+                                borderRadius: "50%",
+                                padding: 0,
+                                height: "100%",
+                                aspectRatio: "1 / 1",
+                                objectFit: "cover",
+                                backgroundColor: "white",
+                            }}
+                                key={uuidv4()}
+                            />
+                        </motion.div>
+                    )
+                })}
+            </AnimatePresence>
         </div>
     );
 

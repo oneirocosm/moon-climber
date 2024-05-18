@@ -1,4 +1,6 @@
 import React from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { v4 as uuidv4 } from 'uuid';
 
 type IconBoxProps = {
     src: string;
@@ -7,10 +9,22 @@ type IconBoxProps = {
 
 export default function IconBox(props: IconBoxProps) {
     return (
-        <div style={{
+        <motion.div style={{
             height: `${props.height}`,
             overflow: "visible",
         }}
+            key={uuidv4()}
+            initial={{
+                opacity: 0,
+            }}
+            animate={{
+                opacity: 1,
+                transform: "translateX(0)",
+            }}
+            exit={{
+                opacity: 0,
+                transform: "translateX(-1.5rem)",
+            }}
         >
             <img src={props.src} style={{
                 borderRadius: "50%",
@@ -19,7 +33,9 @@ export default function IconBox(props: IconBoxProps) {
                 aspectRatio: "1 / 1",
                 objectFit: "cover",
                 backgroundColor: "white",
-            }} />
-        </div>
+            }}
+                key={uuidv4()}
+            />
+        </motion.div>
     );
 }

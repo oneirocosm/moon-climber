@@ -172,7 +172,8 @@ const EffectDecor = styled.h3`
     font-family: Audiowide;
     padding: 0;
     margin: 0;
-    text-shadow: 0 0 4px white, 0 0 4px white, 0 0 4px white, 0 0 4px white;;
+    text-shadow: 0 0 4px white, 0 0 4px white, 0 0 4px white, 0 0 4px white;
+    white-space: nowrap;
 `;
 
 function MsgText(props: MsgTextProps) {
@@ -266,15 +267,35 @@ export default function DonoMsgBox(props: DonoMsgBoxProps) {
                 display: "flex",
                 flexDirection: "column",
             }}>
-                {...msgs.map((data) => {
-                    //return <IconBox src={effects[data.code].img} height="3rem" />
-                    //return <MsgText effect={effects[data.code].name} donor="todo" />
-                    return (
-                        <MsgContent src={effects[data.code].img}
-                            effect={effects[data.code].name}
-                            donor={"todo"}
-                        />)
-                })}
+                <AnimatePresence mode="popLayout">
+                    {...msgs.map((data) => {
+                        //return <IconBox src={effects[data.code].img} height="3rem" />
+                        //return <MsgText effect={effects[data.code].name} donor="todo" />
+                        return (
+                            <motion.div
+                                key={data.id}
+                                layout
+                                initial={{
+                                    opacity: 0,
+                                    transform: "translateY(-1.5rem)",
+                                }}
+                                animate={{
+                                    opacity: 1,
+                                    transform: "translateY(0)",
+                                }}
+                                exit={{
+                                    opacity: 0,
+                                    transform: "translateY(1.5rem)",
+                                }}
+                            >
+                                <MsgContent src={effects[data.code].img}
+                                    effect={effects[data.code].name}
+                                    donor={"todo"}
+                                />
+                            </motion.div>
+                        )
+                    })}
+                </AnimatePresence>
             </div>
         </div>
     );

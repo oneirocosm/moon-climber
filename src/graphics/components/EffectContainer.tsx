@@ -153,9 +153,7 @@ export default function EffectContainer(props: EffectContainerProps) {
     React.useEffect(() => {
         iconsRef.current = icons
     }, [icons])
-    console.log("abcd ", sad);
 
-    console.log(props.playerId);
     useListenFor(`effectresp-${props.playerId}`, (data: EffectData) => {
         // set up message here
         console.log("maybe...", data);

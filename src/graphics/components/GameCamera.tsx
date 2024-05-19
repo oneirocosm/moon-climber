@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { PlayerData } from '../../types/playerdata';
 import { COLORS } from '../assets/constants';
 import parse from 'url-parse';
+import DonoMsgBox from './DonoMsgBox';
 
 const ScreenIframe = styled.iframe`
     background-color: #222222;
@@ -17,6 +18,8 @@ const ScreenContainer = styled.div`
     align-self: stretch;
     aspect-ratio: 16 / 9;
     overflow: hidden;
+    display: grid;
+    grid-template: 1fr /1fr;
 `;
 
 type GameCameraProps = {
@@ -88,8 +91,12 @@ export default function GameCamera(props: GameCameraProps) {
                     style={{
                         transformOrigin: "50% 91%",
                         transform: `scale(${player?.gameScale ?? 1.0})`,
+                        gridColumn: "1 / span 1",
+                        gridRow: "1 / span 1",
                     }}
-                />
+                >
+                </ScreenIframe>
+                <DonoMsgBox playerId={props.id} />
             </ScreenContainer>
         </>
     );

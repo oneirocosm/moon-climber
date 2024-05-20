@@ -34,6 +34,7 @@ const effects = [
     { code: "snowballs", name: "Snowballs" },
     { code: "chaser", name: "Badeline" },
     { code: "kill", name: "Kill Player" },
+    { code: "reset", name: "Reset Level" },
     { code: "wind", name: "Wind" },
     { code: "laughter", name: "Taunting Laughter" },
     { code: "dashes", name: "Unlimited Dashes" },

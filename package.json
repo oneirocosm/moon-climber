@@ -79,6 +79,7 @@
     "color": "^4.2.3",
     "focus-trap-react": "^10.2.3",
     "framer-motion": "^11.2.4",
+    "nodecg": "^2.2.1",
     "pixi.js": "^7.2.4",
     "punycode": "^1.4.1",
     "react": "^18.2.0",

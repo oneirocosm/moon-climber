@@ -242,10 +242,6 @@ export default function DonoMsgBox(props: DonoMsgBoxProps) {
     }, [msgs]);
 
     useListenFor(`effectresp-${props.playerId}`, (data: EffectData) => {
-
-        if (data.time === 0) {
-            return;
-        }
         let uuid = uuidv4();
         setMsgs([...msgs, { id: uuid, code: data.code }]);
 

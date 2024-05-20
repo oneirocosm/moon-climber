@@ -8,6 +8,10 @@
     "email": "software@oneirocosm.com",
     "url": ""
   },
+  "engines": {
+    "node": "18.12.0",
+    "npm": "8.19.2"
+  },
   "files": [
     "dashboard",
     "graphics",

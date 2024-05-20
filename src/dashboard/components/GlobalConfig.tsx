@@ -1,32 +1,45 @@
 import React from 'react';
 import { useReplicant } from '@nodecg/react-hooks';
 import ControlForm from './ControlForm';
-import styled from 'styled-components';
 import FocusTrap from 'focus-trap-react';
 import WarningButton from './WarningButton';
 
-const WarningModal = styled.div`
-    z-index: 100;
-    position: fixed;
-    top: 15%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    min-width: 10rem;
-    min-height: 10rem;
-    display: grid;
-    grid-template: 4fr 1fr / 1fr 1fr;
-    background-color: #1B1971;
-    overflow: visible;
-    border: 2px solid #999;
-    border-radius: 0.5rem;
-    padding: 1rem;
-`;
+function WarningModal(props: React.PropsWithChildren) {
+    return (
+        <div style={{
+            zIndex: 100,
+            position: "fixed",
+            top: "15%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            minWidth: "10rem",
+            minHeight: "10rem",
+            display: "grid",
+            gridTemplate: "4fr 1fr / 1fr 1fr",
+            backgroundColor: "#1B1971",
+            overflow: "visible",
+            border: "2px solid #999",
+            borderRadius: "0.5rem",
+            padding: "1rem",
+        }}
+        >
+            {props.children}
+        </div>
+    );
+}
 
-const WarningText = styled.span`
-    grid-row: 1;
-    grid-column: 1 / 3;
-    color: #FFEE83;
-`;
+function WarningText(props: React.PropsWithChildren) {
+    return (
+        <span style={{
+            gridRow: 1,
+            gridColumn: "1 / 3",
+            color: "#FFEE83",
+        }}
+        >
+
+        </span>
+    )
+}
 
 function randomApiKey(): string {
     let key = '';

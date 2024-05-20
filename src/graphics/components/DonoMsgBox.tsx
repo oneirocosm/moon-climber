@@ -2,7 +2,6 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { v4 as uuidv4 } from 'uuid';
 import { useListenFor } from '@nodecg/react-hooks'
-import styled from 'styled-components';
 
 import { COLORS } from '../assets/constants'
 import oshiro from '../assets/icons/oshiro.png';
@@ -163,18 +162,32 @@ function IconBox(props: IconBoxProps) {
     );
 }
 
+type EffectDecorProps = {
+    children?: React.ReactNode,
+    style?: React.CSSProperties,
+}
+
+function EffectDecor(props: EffectDecorProps) {
+    return (
+        <h3 style={{
+            ...props.style,
+            fontFamily: "Audiowide",
+            padding: 0,
+            margin: 0,
+            textShadow: "0 0 4px white, 0 0 4px white, 0 0 4px white, 0 0 4px white",
+            whiteSpace: "nowrap",
+        }}>
+            {props.children}
+        </h3>
+
+    );
+}
+
 type MsgTextProps = {
     effect: string;
     donor: string;
 }
 
-const EffectDecor = styled.h3`
-    font-family: Audiowide;
-    padding: 0;
-    margin: 0;
-    text-shadow: 0 0 4px white, 0 0 4px white, 0 0 4px white, 0 0 4px white;
-    white-space: nowrap;
-`;
 
 function MsgText(props: MsgTextProps) {
     return (

@@ -1,28 +1,28 @@
 import React, { PropsWithChildren } from 'react';
-import styled from 'styled-components';
 import { useReplicant } from '@nodecg/react-hooks';
 import { PlayerData } from '../../types/playerdata';
 import PlayerCamera from './PlayerCamera';
 
-type PlayerBlockProps = {
-    top: boolean;
-    left: boolean;
+
+type PlayerSummaryProps = {
+    children?: React.ReactNode,
+    style?: React.CSSProperties,
+};
+
+function PlayerSummary(props: PlayerSummaryProps) {
+    return (
+        <div style={{
+            ...props.style,
+            textAlign: "center",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "start",
+        }}
+        >
+            {props.children}
+        </div>
+    );
 }
-
-const PlayerSummary = styled.div`
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-`;
-
-const aPlayerCamera = styled.div`
-    border-radius: 100%;
-    background-color: black;
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    margin: auto;
-`;
 
 type PlayerStatsProps = {
     id: string,

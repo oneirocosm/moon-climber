@@ -1,31 +1,42 @@
 import React from 'react';
-import styled from 'styled-components';
 import { COLORS } from '../assets/constants'
 
 import moonshotLogo from '../assets/moonshot-logo.png'
 
+function OverlayTitleInner(props: React.PropsWithChildren) {
+    return (
+        <div style={{
+            gridRow: 1,
+            gridColumn: "1 / 3",
+            backgroundColor: `${COLORS.MOONSHOT_CORE_DARK}`,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            border: `5px solid ${COLORS.MOONSHOT_CORE_PINK}`,
+            borderRadius: "8px",
+            margin: "1rem 1rem",
+        }}
+        >
+            {props.children}
+        </div>
+    );
+}
 
-const OverlayTitleInner = styled.div`
-    grid-row: 1;
-    grid-column: 1 / 3 ;
-    background-color: ${COLORS.MOONSHOT_CORE_DARK};
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 5px solid ${COLORS.MOONSHOT_CORE_PINK};
-    border-radius: 8px;
-    margin: 1rem 1rem;
-`;
-
-const Title = styled.h1`
-    text-align: center;
-    color: white;
-    font-family: Audiowide;
-    font-size: 5rem;
-    color: ${COLORS.MOONSHOT_CORE_YELLOW};
-    margin-right: 2rem;
-    transform: skew(-10deg, 0deg);
-`;
+function Title(props: React.PropsWithChildren) {
+    return (
+        <h1 style={{
+            textAlign: "center",
+            fontFamily: "Audiowide",
+            fontSize: "5rem",
+            color: `${COLORS.MOONSHOT_CORE_YELLOW}`,
+            marginRight: "2rem",
+            transform: "skew(-10deg, 0deg)",
+        }}
+        >
+            {props.children}
+        </h1>
+    );
+}
 
 export default function OverlayTitle() {
     return (

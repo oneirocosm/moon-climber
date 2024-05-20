@@ -1,15 +1,22 @@
 import React from 'react';
-import styled from 'styled-components';
 import StyledButton from './StyledButton';
 import { COLORS } from '../assets/constants';
 
-const ButtonsBox = styled.div`
-    display: flex;
-    flex-direction: row;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-`;
+function ButtonsBox(props: React.PropsWithChildren) {
+    return (
+        <div style={{
+            display: "flex",
+            flexDirection: "row",
+            gap: "0.5rem",
+            flexWrap: "wrap",
+            marginBottom: "2rem",
+        }}
+        >
+            {props.children}
+        </div>
+    );
+
+}
 
 type PlayerButtonsProps = {
     id: string

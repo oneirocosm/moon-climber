@@ -1,13 +1,31 @@
 import React, { PropsWithChildren } from 'react';
-import styled from 'styled-components';
 import Color from 'color';
 
-const WarningButtonInner = styled.button`
-    border-radius: 10000px;
-    border: 1px solid black;
-    margin-left: 1rem;
-    margin-right: 1rem;
-`;
+type WarningButtonInnerProps = {
+    children?: React.ReactNode,
+    style?: React.CSSProperties,
+    onMouseEnter?: () => void,
+    onMouseLeave?: () => void,
+    onClick?: () => void,
+}
+
+function WarningButtonInner(props: WarningButtonInnerProps) {
+    return (
+        <button style={{
+            ...props.style,
+            borderRadius: "10000px",
+            border: "1px solid black",
+            marginLeft: "1rem",
+            marginRight: "1rem",
+        }}
+            onMouseEnter={props.onMouseEnter}
+            onMouseLeave={props.onMouseLeave}
+            onClick={props.onClick}
+        >
+            {props.children}
+        </button>
+    );
+}
 
 type WarningButtonProps = {
     regColor: string;

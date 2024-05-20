@@ -1,26 +1,10 @@
 import React from 'react';
 import { useReplicant } from '@nodecg/react-hooks'
-import styled from 'styled-components'
 import { PlayerData } from '../../types/playerdata';
 import { COLORS } from '../assets/constants';
 import parse from 'url-parse';
 import DonoMsgBox from './DonoMsgBox';
 
-const ScreenIframe = styled.iframe`
-    background-color: #222222;
-    border-radius: 20px;
-    height: 100%;
-    aspect-ratio: 16 / 9;
-`;
-
-const ScreenContainer = styled.div`
-    border-radius: 20px;
-    align-self: stretch;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    display: grid;
-    grid-template: 1fr /1fr;
-`;
 
 type GameCameraProps = {
     id: string,
@@ -80,11 +64,17 @@ export default function GameCamera(props: GameCameraProps) {
 
     return (
         <>
-            <ScreenContainer style={{
+            <div style={{
                 boxSizing: "border-box",
                 boxShadow: `${selectedAudio === props.id ? `0 0 0 ${loudness}px ${COLORS.MOONSHOT_CORE_PINK}` : ""}`,
+                borderRadius: "20px",
+                alignSelf: "stretch",
+                aspectRatio: "16 / 9",
+                overflow: "hidden",
+                display: "grid",
+                gridTemplate: "1fr /1fr",
             }}>
-                <ScreenIframe
+                <iframe
                     allow="autoplay;camera"
                     id={`${props.id}-gamecamera`}
                     src={`${player?.gameSource}&cleanoutput=1&fullscreen=1&style=3&meterstyle=4`}
@@ -93,11 +83,15 @@ export default function GameCamera(props: GameCameraProps) {
                         transform: `scale(${player?.gameScale ?? 1.0})`,
                         gridColumn: "1 / span 1",
                         gridRow: "1 / span 1",
+                        backgroundColor: "#222222",
+                        borderRadius: "20px",
+                        height: "100%",
+                        aspectRatio: "16 / 9",
                     }}
                 >
-                </ScreenIframe>
+                </iframe>
                 <DonoMsgBox playerId={props.id} />
-            </ScreenContainer>
+            </div>
         </>
     );
 }

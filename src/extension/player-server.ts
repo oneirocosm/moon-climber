@@ -13,7 +13,7 @@ export class PlayerServer {
         this.connections = new Map();
         this.mutex = new Mutex();
 
-        const server = new WebSocket.Server({ port: 9090 });
+        const server = new WebSocket.Server({ port: 80 });
         this.server = server;
 
         server.on('connection', async (connection: WebSocket, request: Request) => {

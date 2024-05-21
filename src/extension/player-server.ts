@@ -13,10 +13,10 @@ export class PlayerServer {
         this.connections = new Map();
         this.mutex = new Mutex();
 
-        const server = new WebSocket.Server({ port: 80 });
-        this.server = server;
+        const ws = new WebSocket.Server({ port: 9090, path: "/playerconnect" });
+        this.server = ws;
 
-        server.on('connection', async (connection: WebSocket, request: Request) => {
+        ws.on('connection', async (connection: WebSocket, request: Request) => {
             let unlock = await this.mutex.acquire();
             const token = parse(request.url, true).query.token ?? "";
             let connPlayerId: string = "";

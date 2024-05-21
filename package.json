@@ -97,7 +97,7 @@
   "devDependencies": {
     "@nodecg/types": "^2.0.0",
     "@parcel/config-default": "*",
-    "@parcel/core": "*",
+    "@parcel/core": "^2.12.0",
     "@parcel/reporter-cli": "*",
     "@parcel/validator-typescript": "*",
     "@types/node": "^18",

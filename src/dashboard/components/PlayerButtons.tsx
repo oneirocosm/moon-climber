@@ -1,6 +1,7 @@
 import React from 'react';
 import StyledButton from './StyledButton';
 import { COLORS } from '../assets/constants';
+import ControlForm from './ControlForm';
 
 function ButtonsBox(props: React.PropsWithChildren) {
     return (
@@ -19,7 +20,8 @@ function ButtonsBox(props: React.PropsWithChildren) {
 }
 
 type PlayerButtonsProps = {
-    id: string
+    id: string;
+    donor: string;
 }
 
 const colors = [
@@ -59,8 +61,6 @@ const effects = [
     { code: "flipscreen", name: "Flip Screen" },
     { code: "mirrorworld", name: "Mirror World" },
 ];
-function test() {
-}
 
 export default function PlayerButtons(props: PlayerButtonsProps) {
     return (
@@ -74,7 +74,7 @@ export default function PlayerButtons(props: PlayerButtonsProps) {
                             onClick={() => {
                                 nodecg.sendMessage(
                                     "celesteEvent",
-                                    { playerId: props.id, code: effect.code }
+                                    { playerId: props.id, code: effect.code, donor: props.donor ?? "Anonymous" }
                                 );
                             }}
 

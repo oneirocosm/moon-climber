@@ -128,6 +128,7 @@ module.exports = async function (nodecg: NodeCG.ServerAPI) {
 		const newest = newVal[newVal.length - 1];
 		console.log("donation ", newest);
 		const chosen = newest?.donor_comment ?? "";
+		const donor = newest?.donor_name ?? "Anonymous";
 		newest.reward_claims?.forEach((reward) => {
 			const rewardId = reward.reward_id ?? "";
 			console.log("reward id ", rewardId);
@@ -141,6 +142,7 @@ module.exports = async function (nodecg: NodeCG.ServerAPI) {
 			let celesteEvent: CelesteEvent = {
 				playerId: rewardType.player,
 				code: code,
+				donor: donor,
 			}
 			console.log("event ", celesteEvent);
 			nodecg.sendMessage("celesteEvent", celesteEvent);

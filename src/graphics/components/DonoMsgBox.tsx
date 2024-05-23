@@ -135,6 +135,7 @@ type DonoMsgBoxProps = {
 type MsgState = {
     id: string,
     code: string,
+    donor: string,
 };
 
 type IconBoxProps = {
@@ -244,6 +245,7 @@ type EffectData = {
     playerId: string;
     time: number;
     code: string;
+    donor: string;
 };
 
 export default function DonoMsgBox(props: DonoMsgBoxProps) {
@@ -256,7 +258,7 @@ export default function DonoMsgBox(props: DonoMsgBoxProps) {
 
     useListenFor(`effectresp-${props.playerId}`, (data: EffectData) => {
         let uuid = uuidv4();
-        setMsgs([...msgs, { id: uuid, code: data.code }]);
+        setMsgs([...msgs, { id: uuid, code: data.code, donor: data.donor }]);
 
         setTimeout(() => {
             setMsgs(msgsRef.current.filter((msg) => msg.id !== uuid));
@@ -299,7 +301,7 @@ export default function DonoMsgBox(props: DonoMsgBoxProps) {
                             >
                                 <MsgContent src={effects[data.code].img}
                                     effect={effects[data.code].name}
-                                    donor={"todo"}
+                                    donor={data.donor}
                                 />
                             </motion.div>
                         )

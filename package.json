@@ -26,6 +26,9 @@
   ],
   "nodecg": {
     "compatibleRange": "^2.0.0",
+    "bundleDependencies": {
+      "nodecg-tiltify": "^1.0.0"
+    },
     "dashboardPanels": [
       {
         "name": "controls",

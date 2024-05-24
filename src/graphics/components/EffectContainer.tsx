@@ -208,7 +208,7 @@ export default function EffectContainer(props: EffectContainerProps) {
                             layout
                             initial={{
                                 opacity: 0,
-                                transform: "translateX(-1.5rem)",
+                                transform: `translateX(${leftRow(props.playerId) ? "-1.5rem" : "1.5rem"})`,
                             }}
                             animate={{
                                 opacity: 1,
@@ -216,7 +216,7 @@ export default function EffectContainer(props: EffectContainerProps) {
                             }}
                             exit={{
                                 opacity: 0,
-                                transform: "translateX(-1.5rem)",
+                                transform: `translateX(${leftRow(props.playerId) ? "-1.5rem" : "1.5rem"})`,
                             }}
                         >
                             <img src={effects[data.code].img} style={{

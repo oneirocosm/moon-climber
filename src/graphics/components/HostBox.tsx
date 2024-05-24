@@ -141,62 +141,133 @@ const eventTypes: Array<EventType> = [
 ];
 
 function ScrollBox() {
+    const speed = -2;
+    const baseY = useMotionValue(0);
+    const y = useTransform(baseY, (v) => `${wrap(-50.3, 0, v)}%`)
+    useAnimationFrame((t, delta) => {
+        let move: number = 1 * speed * (delta / 1000);
+        baseY.set(baseY.get() + move);
+    })
+
     return (
         <table style={{
             overflowY: "hidden",
             display: "flex",
             flexDirection: "column",
-            flexShrink: 2,
             borderTopLeftRadius: "20px",
             borderTopRightRadius: "20px",
             border: `3px solid ${COLORS.MOONSHOT_CORE_PINK}`,
+            color: `${COLORS.MOONSHOT_CORE_YELLOW}`,
         }}>
-            <tr>
-                <th></th>
-                <th>Code</th>
-                <th>Group</th>
-            </tr>
-
-            {
-                eventTypes.map((data) => (
-                    <tr className="table-row" style={{
-                        display: "flex",
-                    }} key={uuidv4()}>
-                        <td style={{
-                            height: "2rem",
-                            overflow: "visible",
+            <div>
+                <div className="table-row" style={{
+                    borderBottom: `3px solid ${COLORS.MOONSHOT_CORE_PINK}`,
+                }}>
+                    <div style={{
+                        height: "2rem",
+                        overflow: "visible",
+                        marginRight: "2rem",
+                        marginLeft: "0.3rem",
+                        opacity: 0,
+                    }}
+                        key={uuidv4()}
+                    >
+                        <img src={popeye} style={{
+                            borderRadius: "50%",
+                            padding: 0,
+                            height: "100%",
+                            aspectRatio: "1 / 1",
+                            objectFit: "cover",
+                            backgroundColor: "white",
                         }}
                             key={uuidv4()}
-                        >
-                            <img src={data.icon} style={{
-                                borderRadius: "50%",
-                                padding: 0,
-                                height: "100%",
-                                aspectRatio: "1 / 1",
-                                objectFit: "cover",
-                                backgroundColor: "white",
-                            }}
-                                key={uuidv4()}
-                            />
-                        </td>
-                        <td style={{
+                        />
+                    </div>
+                    <span className="cell-code">Code</span>
+                    <span>Group</span>
+                </div>
+            </div>
+            <div className="scroll-container">
+                <motion.div className="table-body" style={{ y }}>
+                    {
+                        eventTypes.map((data) => (
+                            <div className="table-row" style={{
+                                display: "flex",
+                            }} key={uuidv4()}>
+                                <div style={{
+                                    height: "2rem",
+                                    overflow: "visible",
+                                    marginRight: "2rem",
+                                    marginLeft: "0.3rem",
+                                }}
+                                    key={uuidv4()}
+                                >
+                                    <img src={data.icon} style={{
+                                        borderRadius: "50%",
+                                        padding: 0,
+                                        height: "100%",
+                                        aspectRatio: "1 / 1",
+                                        objectFit: "cover",
+                                        backgroundColor: "white",
+                                    }}
+                                        key={uuidv4()}
+                                    />
+                                </div>
+                                <span className="cell-code"
+                                    key={uuidv4()}
+                                >
+                                    {data.code}
+                                </span>
+                                <span style={{
 
-                        }}
-                            key={uuidv4()}
-                        >
-                            {data.code}
-                        </td>
-                        <td style={{
-
-                        }}
-                            key={uuidv4()}
-                        >
-                            {data.group}
-                        </td>
-                    </tr>
-                ))
-            }
-        </table>
+                                }}
+                                    key={uuidv4()}
+                                >
+                                    {data.group}
+                                </span>
+                            </div>
+                        ))
+                    }
+                    {
+                        eventTypes.map((data) => (
+                            <div className="table-row" style={{
+                                display: "flex",
+                            }} key={uuidv4()}>
+                                <div style={{
+                                    height: "2rem",
+                                    overflow: "visible",
+                                    marginRight: "2rem",
+                                    marginLeft: "0.3rem",
+                                }}
+                                    key={uuidv4()}
+                                >
+                                    <img src={data.icon} style={{
+                                        borderRadius: "50%",
+                                        padding: 0,
+                                        height: "100%",
+                                        aspectRatio: "1 / 1",
+                                        objectFit: "cover",
+                                        backgroundColor: "white",
+                                    }}
+                                        key={uuidv4()}
+                                    />
+                                </div>
+                                <span className="cell-code"
+                                    key={uuidv4()}
+                                >
+                                    {data.code}
+                                </span>
+                                <span
+                                    key={uuidv4()}
+                                >
+                                    {data.group}
+                                </span>
+                            </div>
+                        ))
+                    }
+                </motion.div>
+            </div >
+        </table >
     );
 }
 
@@ -218,7 +289,7 @@ function InfoBox() {
                 color: `${COLORS.MOONSHOT_CORE_YELLOW}`,
                 padding: "0.4rem",
             }}>
-                To affect the game, go to <b>https://moonshotpods.com/donate</b> and select a reward that starts with "Celeste:".  "Kill" donations always kill, but you can specify a type of effect with "help" and "hinder" types by putting one of the codes above at the start of your comment. If you do this, please only select one reward per donation.
+                To affect the game, go to <b>https://moonshotpods.com/donate</b> and select a reward that starts with "Celeste."  "Kill" donations always kill, but you can specify a type of effect for "help" and "hinder" donations by putting one of the codes above at the start of your comment. If you do this, please only select one reward per donation.
             </span>
         </div>
     )

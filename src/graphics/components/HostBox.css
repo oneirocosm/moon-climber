@@ -1,19 +1,30 @@
 .table-row {
-    background-color: #222;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
 }
 
-.table-row:nth-child(odd) {
+.table-row:nth-child(3n) {
     background-color: #666;
 }
 
-.cell-icon {
-    width: 2rem;
+.table-row:nth-child(3n + 1) {
+    background-color: #444;
+}
+
+.table-row:nth-child(3n + 2) {
+    background-color: #222;
 }
 
 .cell-code {
-    width: 8rem;
+    width: 12rem;
 }
 
 .cell-group {
     width: 10rem;
+}
+
+.scroll-container {
+    overflow-y: hidden;
+    width: 100%;
 }

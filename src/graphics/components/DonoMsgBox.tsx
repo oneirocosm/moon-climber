@@ -8,11 +8,9 @@ import oshiro from '../assets/icons/oshiro.png';
 import seeker from '../assets/icons/seeker.png';
 import snowball from '../assets/icons/snowball.png';
 import badeline from '../assets/icons/badeline.png';
-import life from '../assets/icons/life.png';
 import sad from '../assets/icons/sad.png';
 import wind from '../assets/icons/wind.png';
 import laugh from '../assets/icons/laugh.png';
-import infinite from '../assets/icons/infinity.png';
 import popeye from '../assets/icons/popeye.png';
 import powerstar from '../assets/icons/powerstar.png';
 import blank from '../assets/icons/blank.png';
@@ -25,6 +23,10 @@ import mirror from '../assets/icons/mirror.png';
 import fast from '../assets/icons/clock-fast.png';
 import turtle from '../assets/icons/turtle.png';
 import hiccup from '../assets/icons/hiccup.png';
+import uno from '../assets/icons/uno.png';
+import skull from '../assets/icons/skull.png';
+import dash from '../assets/icons/dash.png';
+import oshiroBig from '../assets/icons/oshiro-big.png';
 
 type Effect = {
     name: string;
@@ -40,7 +42,7 @@ const effects: EffectMap = {
     },
     "oshiro_giant": {
         name: "Giant Oshiro",
-        img: oshiro,
+        img: oshiroBig,
     },
     "seeker": {
         name: "Seeker",
@@ -56,7 +58,7 @@ const effects: EffectMap = {
     },
     "kill": {
         name: "Kill Player",
-        img: life,
+        img: skull,
     },
     "reset": {
         name: "Reset Level",
@@ -72,7 +74,7 @@ const effects: EffectMap = {
     },
     "dashes": {
         name: "Unlimited Dashes",
-        img: infinite,
+        img: dash,
     },
     "stamina": {
         name: "Infinite Stamina",
@@ -120,7 +122,7 @@ const effects: EffectMap = {
     },
     "flipscreen": {
         name: "Flip Screen",
-        img: mirror,
+        img: uno,
     },
     "mirrorworld": {
         name: "Mirror World",

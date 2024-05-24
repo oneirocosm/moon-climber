@@ -8,10 +8,8 @@ import PlayerStats from "./PlayerStats";
 import oshiro from '../assets/icons/oshiro.png';
 import seeker from '../assets/icons/seeker.png';
 import snowball from '../assets/icons/snowball.png';
-import life from '../assets/icons/life.png';
 import wind from '../assets/icons/wind.png';
 import laugh from '../assets/icons/laugh.png';
-import infinite from '../assets/icons/infinity.png';
 import popeye from '../assets/icons/popeye.png';
 import powerstar from '../assets/icons/powerstar.png';
 import blank from '../assets/icons/blank.png';
@@ -24,6 +22,10 @@ import mirror from '../assets/icons/mirror.png';
 import fast from '../assets/icons/clock-fast.png';
 import turtle from '../assets/icons/turtle.png';
 import hiccup from '../assets/icons/hiccup.png';
+import uno from '../assets/icons/uno.png';
+import skull from '../assets/icons/skull.png';
+import dash from '../assets/icons/dash.png';
+import oshiroBig from '../assets/icons/oshiro-big.png';
 
 import "./HostBox.css";
 
@@ -35,7 +37,7 @@ interface EventType {
 
 const eventTypes: Array<EventType> = [
     {
-        icon: infinite,
+        icon: dash,
         code: "unlimited dashes",
         group: "help",
     },
@@ -55,7 +57,7 @@ const eventTypes: Array<EventType> = [
         group: "hinder",
     },
     {
-        icon: oshiro,
+        icon: oshiroBig,
         code: "giant oshiro",
         group: "hinder",
     },
@@ -125,7 +127,7 @@ const eventTypes: Array<EventType> = [
         group: "hinder",
     },
     {
-        icon: mirror,
+        icon: uno,
         code: "flip screen",
         group: "hinder",
     },
@@ -135,7 +137,7 @@ const eventTypes: Array<EventType> = [
         group: "hinder",
     },
     {
-        icon: life,
+        icon: skull,
         code: "kill player",
         group: "n/a",
     },

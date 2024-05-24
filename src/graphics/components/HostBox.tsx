@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { motion, useTransform, useMotionValue, useAnimationFrame } from "framer-motion";
 import { wrap } from "@motionone/utils";
 import { COLORS } from '../assets/constants';
+import PlayerStats from "./PlayerStats";
 
 import oshiro from '../assets/icons/oshiro.png';
 import seeker from '../assets/icons/seeker.png';
@@ -143,7 +144,7 @@ const eventTypes: Array<EventType> = [
 function ScrollBox() {
     const speed = -2;
     const baseY = useMotionValue(0);
-    const y = useTransform(baseY, (v) => `${wrap(-50.3, 0, v)}%`)
+    const y = useTransform(baseY, (v) => `${wrap(-50.05, 0, v)}%`)
     useAnimationFrame((t, delta) => {
         let move: number = 1 * speed * (delta / 1000);
         baseY.set(baseY.get() + move);
@@ -162,6 +163,7 @@ function ScrollBox() {
             <div>
                 <div className="table-row" style={{
                     borderBottom: `3px solid ${COLORS.MOONSHOT_CORE_PINK}`,
+                    fontWeight: "bold",
                 }}>
                     <div style={{
                         height: "2rem",
@@ -277,6 +279,7 @@ function InfoBox() {
             display: "flex",
             flexDirection: "column",
             width: "60%",
+            fontFamily: "Exo2",
         }}>
             <ScrollBox />
             <span style={{
@@ -306,12 +309,13 @@ export default function HostBox() {
         }}>
             <InfoBox />
             <div style={{
-                background: "limegreen",
                 alignSelf: "stretch",
                 flex: "auto",
+                display: "flex",
+                justifyContent: "center",
             }}>
+                <PlayerStats id="player4" style={{ width: "37.5%" }} />
             </div>
-
         </div>
     );
 }

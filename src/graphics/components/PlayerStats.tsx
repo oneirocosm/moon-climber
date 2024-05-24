@@ -2,6 +2,7 @@ import React, { PropsWithChildren } from 'react';
 import { useReplicant } from '@nodecg/react-hooks';
 import { PlayerData } from '../../types/playerdata';
 import PlayerCamera from './PlayerCamera';
+import { COLORS } from "../assets/constants";
 
 
 type PlayerSummaryProps = {
@@ -26,6 +27,7 @@ function PlayerSummary(props: PlayerSummaryProps) {
 
 type PlayerStatsProps = {
     id: string,
+    style?: React.CSSProperties
 }
 
 function topRow(id: string) {
@@ -41,11 +43,15 @@ export default function PlayerStats(props: PlayerStatsProps) {
             justifyContent: "space-between",
             flexDirection: topRow(props.id) ? "column" : "column-reverse",
             width: "15%",
+            fontFamily: "Exo2",
+            color: `${COLORS.MOONSHOT_CORE_YELLOW}`,
+            ...props.style,
         }}
         >
             <PlayerSummary style={{
                 marginTop: topRow(props.id) ? "0" : "auto",
                 marginBottom: topRow(props.id) ? "auto" : "0",
+                opacity: 0,
             }}>
                 <h3>Chapter</h3>
                 <p>####</p>
@@ -55,8 +61,8 @@ export default function PlayerStats(props: PlayerStatsProps) {
             <PlayerCamera id={props.id} />
             <PlayerSummary style={{
             }}>
-                <h3>{player?.name}</h3>
-                <p>{player?.pronouns}</p>
+                <h3 style={{ fontSize: "2rem" }}>{player?.name}</h3>
+                <p style={{ fontSize: "1.2rem" }}>{player?.pronouns}</p>
             </PlayerSummary>
         </div>
     )

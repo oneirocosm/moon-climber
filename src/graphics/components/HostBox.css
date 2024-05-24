@@ -1,0 +1,19 @@
+.table-row {
+    background-color: #222;
+}
+
+.table-row:nth-child(odd) {
+    background-color: #666;
+}
+
+.cell-icon {
+    width: 2rem;
+}
+
+.cell-code {
+    width: 8rem;
+}
+
+.cell-group {
+    width: 10rem;
+}

@@ -76,6 +76,7 @@
     "generate-schema-types": "trash src/types/schemas && nodecg schema-types"
   },
   "dependencies": {
+    "@motionone/utils": "^10.17.0",
     "@nodecg/react-hooks": "^1.0.3",
     "@pixi/react": "^7.1.0",
     "@types/color": "^3.0.6",

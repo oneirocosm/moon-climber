@@ -124,13 +124,24 @@ module.exports = async function (nodecg: NodeCG.ServerAPI) {
 
 	const donations = nodecg.Replicant('donations', 'nodecg-tiltify') as unknown as NodeCG.ServerReplicant<Array<Donation>>;
 	donations.on("change", (newVal, oldVal) => {
-		if (!newVal) return;
+		console.log("yes ");
+		if (newVal === undefined) {
+			return;
+		}
+		if (newVal.length == 0) {
+			return;
+		}
 		const newest = newVal[newVal.length - 1];
-		console.log("donation ", newest);
+		if (newest === undefined) {
+			return;
+		}
+		console.log("sdonation ", newest);
+		console.log("please ");
 		const chosen = newest?.donor_comment ?? "";
 		const donor = newest?.donor_name ?? "Anonymous";
-		newest.reward_claims?.forEach((reward) => {
-			const rewardId = reward.reward_id ?? "";
+		const claims = newest?.reward_claims ?? [];
+		claims.forEach((reward) => {
+			const rewardId = reward?.reward_id ?? "";
 			console.log("reward id ", rewardId);
 			const rewardType = tiltifyRewards[rewardId];
 			console.log("reward type ", rewardType);

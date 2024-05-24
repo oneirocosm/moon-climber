@@ -4,7 +4,7 @@
 		"isolatedModules": true,
 		"jsx": "react",
 		// Output related
-		"target": "es2021",
+		"target": "es2019",
 		"outDir": "./build",
 		"module": "commonjs",
 		// Module resolution
@@ -13,6 +13,7 @@
 		"resolveJsonModule": true,
 		// Type checking
 		"strict": true,
+		"strictNullChecks": true,
 		// Extra output
 		"declaration": true,
 		"declarationMap": true,

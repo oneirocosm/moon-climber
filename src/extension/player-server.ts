@@ -20,7 +20,7 @@ export class PlayerServer {
             let unlock = await this.mutex.acquire();
             const token = parse(request.url, true).query.token ?? "";
             let connPlayerId: string = "";
-            console.log(token);
+            console.log("connection attempt from ", token);
 
             for (const [playerId, player] of playerReps) {
                 if (!player || !player.value) {
@@ -46,12 +46,13 @@ export class PlayerServer {
                 connection.close();
                 return
             }
+            console.log("connection success from ", token);
 
             connection.on("message", (json: string) => {
                 let success = JSON.parse(json);
                 let msgName = `effectresp-${success.playerId}`;
                 nodecg.sendMessage(msgName, success);
-                console.log(success);
+                console.log("received from game ", success);
             });
 
             connection.on("close", async () => {

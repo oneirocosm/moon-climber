@@ -157,23 +157,16 @@ export default function EffectContainer(props: EffectContainerProps) {
     }, [icons])
 
     useListenFor(`effectresp-${props.playerId}`, (data: EffectData) => {
-        // set up message here
-        console.log("maybe...", data);
-
-
         if (data.time === 0) {
             return;
         }
         let uuid = uuidv4();
         let newIcons = [...icons];
         newIcons.push({ id: uuid, code: data.code });
-        console.log("newicns", newIcons);
         setIcons(newIcons);
 
         setTimeout(() => {
-            console.log("icnsfoo");
             let temp = iconsRef.current.filter((data) => data.id !== uuid);
-            console.log("icns del", temp);
             setIcons(temp);
         }, data.time)
     });

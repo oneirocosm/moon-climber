@@ -30,13 +30,11 @@ export default function GameCamera(props: GameCameraProps) {
             }
             iframe.contentWindow.postMessage({ "getLoudness": true }, "*");
             timeout = setTimeout(() => {
-                console.log("timeout")
                 requestLoudness()
             }, 100)
         }
 
         const handler = (event: MessageEvent<any>) => {
-            console.log(JSON.stringify(event.data));
             if ("loudness" in event.data) {
                 const loudnessVal = Number(event.data.loudness[getGuestId()]);
                 const minSat = 5;
@@ -53,7 +51,6 @@ export default function GameCamera(props: GameCameraProps) {
             }, 50)
         }
 
-        console.log("foo")
         window.addEventListener("message", handler);
 
         return () => {

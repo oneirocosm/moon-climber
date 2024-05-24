@@ -54,17 +54,7 @@ function getApiKey(hostUrl: string): string {
 }
 
 module.exports = async function (nodecg: NodeCG.ServerAPI) {
-	nodecg.log.info("Hello, from your bundle's extension!");
-	nodecg.log.info("I'm where you put all your server-side code.");
-	nodecg.log.info(
-		`To edit me, open "${__filename.replace(
-			'build/extension',
-			'src/extension',
-		)}" in your favorite text editor or IDE.`,
-	);
-	nodecg.log.info('You can use any libraries, frameworks, and tools you want. There are no limits.');
-	nodecg.log.info('Visit https://nodecg.dev for full documentation.');
-	nodecg.log.info('Good luck!');
+	nodecg.log.info("Launching moon-climber bundle!");
 
 	const selectedAudio = nodecg.Replicant('selectedAudio', { defaultValue: "none" });
 	const hostUrl = nodecg.Replicant('hostUrl', { defaultValue: "" });
@@ -124,7 +114,6 @@ module.exports = async function (nodecg: NodeCG.ServerAPI) {
 
 	const donations = nodecg.Replicant('donations', 'nodecg-tiltify') as unknown as NodeCG.ServerReplicant<Array<Donation>>;
 	donations.on("change", (newVal, oldVal) => {
-		console.log("yes ");
 		if (newVal === undefined) {
 			return;
 		}
@@ -135,8 +124,7 @@ module.exports = async function (nodecg: NodeCG.ServerAPI) {
 		if (newest === undefined) {
 			return;
 		}
-		console.log("sdonation ", newest);
-		console.log("please ");
+		console.log("donation ", newest);
 		const chosen = newest?.donor_comment ?? "";
 		const donor = newest?.donor_name ?? "Anonymous";
 		const claims = newest?.reward_claims ?? [];
@@ -155,7 +143,6 @@ module.exports = async function (nodecg: NodeCG.ServerAPI) {
 				code: code,
 				donor: donor,
 			}
-			console.log("event ", celesteEvent);
 			nodecg.sendMessage("celesteEvent", celesteEvent);
 		});
 	});

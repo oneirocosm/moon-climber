@@ -6,11 +6,6 @@ let failedCount = 0;
 let callbackID = Math.random() * 1000;
 let localApiKey: string;
 
-function handler(event: WebSocket.MessageEvent) {
-	console.log(JSON.stringify(event.data));
-}
-
-
 export namespace VdoNinjaAudio {
 	export function connect(apiKey: string) {
 		if (!apiKey && !localApiKey) {
@@ -51,8 +46,6 @@ export namespace VdoNinjaAudio {
 				connecting = setTimeout(function () { connect(apiKey); }, 1)
 			}
 		}
-
-		socket.onmessage = handler
 	}
 
 	export function muteGameScreen(playerKey: string, mute: boolean) {
